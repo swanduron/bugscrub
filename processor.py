@@ -1,5 +1,6 @@
 from source import information
 from config import *
+import re
 
 class DocToolkit(object):
 
@@ -54,6 +55,8 @@ class DocToolkit(object):
             word = ''
         elif word[:-1] in IGNORE_WORDS and len(word) <= 2:
             word = ''
+        # elif re.findall('^\d+$', word):
+        #     word = ''
 
         return word
 
