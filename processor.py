@@ -60,5 +60,29 @@ class DocToolkit(object):
 if __name__ == '__main__':
     toolkit = DocToolkit(information)
     freq_dict = toolkit.get_word_freq()
+
+    counter = 0
+    level_list = []
+
+    max = 0
+    content = ''
     for index, content in toolkit.get_similarity(freq_dict).items():
         print(index, content['level'])
+        counter += content['level']
+        level_list.append(content['level'])
+        if content['level'] > max:
+            max = content['level']
+            content = content['text']
+    # print(max)
+    # print(content)
+    print('-'*50)
+    print(counter)
+    print(level_list)
+    dif = 20/len(level_list)
+    pingjun = counter/len(level_list)
+    print(dif, pingjun)
+    print('1 sigma:', pingjun-dif, pingjun+dif)
+    print('2 sigma:', pingjun-2*dif, pingjun+2*dif)
+    print('3 sigma:', pingjun - 3*dif, pingjun + 3*dif)
+    print(list(filter(lambda i: i>pingjun-dif, level_list)))
+    print(len(list(filter(lambda i: i>pingjun-dif, level_list))), '/', len(level_list))
