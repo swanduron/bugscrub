@@ -52,7 +52,7 @@ class DocToolkit(object):
             word = ''
         elif word in IGNORE_WORDS:
             word = ''
-        elif word[:-1] in IGNORE_WORDS:
+        elif word[:-1] in IGNORE_WORDS and len(word) <= 2:
             word = ''
 
         return word
